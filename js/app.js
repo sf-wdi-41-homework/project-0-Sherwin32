@@ -3,6 +3,8 @@ $(document).ready(function() {
 	console.log("I'm in");
 	var doc = $(document);
 	var carOne = $('#car-one');
+	var playgroundHeight = parseInt($('#playground').css('height'));
+	var playgroundWidth = parseInt($('#playground').css('width'));
 	// var activeMotion = null;
 	var activeMotion = {
 		left: null,
@@ -14,7 +16,7 @@ $(document).ready(function() {
 	
     
 	doc.keydown( function( e ) {
-		console.log(e.which);
+		// console.log(e.which);
 		/* 
 		<: 37
 		>: 39
@@ -25,9 +27,6 @@ $(document).ready(function() {
 		w: 87  ^
 		s: 83  v
 		*/
-		// console.log("left");
-		// console.log(e.which);
-		// console.log(activeMotion.left === goLeft)
 	   if ( e.which === 37 && activeMotion.left !== goLeft ) {
 	      activeMotion.left = goLeft;
 	      goLeft();
@@ -62,22 +61,21 @@ $(document).ready(function() {
 		}
 	}
 	function go(direction){//left, right up down
-		console.log(`inside go${direction}`);
+		// console.log(`inside go${direction}`);
 		switch(direction){
 			case "left":
-				carOne.css('left', '-=2');
+				carOne.css('left', '-=3');
 				break;
 			case "right":
-				carOne.css('left', '+=2');
+				carOne.css('left', '+=3');
 				break;
 			case "up":
 				carOne.css('top', '-=3');
 				break;
 			case "down":
-				carOne.css('top', '+=2');
+				carOne.css('top', '+=3');
 				break;
-		}
-		
+		}	
 		if(activeMotion[direction]===goLeft){
 			setTimeout(goLeft,10);
 		}
@@ -92,79 +90,21 @@ $(document).ready(function() {
 		}
 	}
 	goLeft = function(){
+		if(parseInt(carOne.css('left'))>=0)
 		go("left");
    	}
    	goRight = function(){
+   		if(parseInt(carOne.css('left'))<=playgroundWidth-20)
 		go("right");
    	}
    	goUp = function(){
+   		if(parseInt(carOne.css('top'))>=0)
 		go("up");
    	}
    	goDown = function(){
+   		if(parseInt(carOne.css('top'))<=playgroundHeight-20)
 		go("down");
    	}
 
-	
-	// goLeft = function(){
-	// 	console.log('inside goLeft')
- //   		carOne.css( "left" , '-=1' );
- //   		if ( activeMotion.left === goLeft ) {
- //      		setTimeout( goLeft , 10 );
- //   		}
-	// }
-	
-
-	/////////////////////////
-	// doc.keypress(function (e) {
- //        var keyCode = e.keyCode || e.which,
- //        arrow = {left: 37, up: 38, right: 39, down: 40 };
- //        console.log("go!")
-
- //        switch (keyCode) {
-            
- //            case arrow.left: 
- //                $('#car-one').animate({"left": "-=1px"}, "fast");
- //            break;
-            
- //            case arrow.right: 
- //                $('#car-one').animate({"left": "+=1px"}, "fast");
- //            break;
- //        }
- //    });
-
-	
-
-//     // cache jQuery objects for performance
-// var you = $( "#you" )
-// , doc = $( document )
-
-// // variable to hold motion state
-// , activeMotion
-
-// // goDown motion, adjust numbers to taste
-// , goDown = function(){
-//    you.css( "left" , you.css( "left" ) - 16 );
-//    if ( activeMotion === goDown ) {
-//       setTimeout( goDown , 10 );
-//    }
-// }
-
-// doc.keydown( function( e ) {
-//    if ( e.which === 37 && activeMotion !== goDown ) {
-//       activeMotion = goDown;
-//       goDown();
-//    }
-//    // all directions can go here in seperate if/else statements
-//    // be sure to include "activeMotion !== goDown" else every time
-//    // keydown event fires, it will start a new goDown loop.
-// } );
-
-// doc.keyup( function () {
-//    // simply ends any motion that checked activeMotion
-//    activeMotion = null;
-// } );
-	// $('.box').on('click', onClickAction);
-	// $('#restartBtn').on('click', restart);
-	// $('#resetScoreBtn').on('click', resetScore);
 
 });
