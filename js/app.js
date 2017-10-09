@@ -63,7 +63,7 @@ $(document).ready(function() {
 
 
     }
-
+    //To turn on and off the keydown/keyup listener
     function listenerSwitch() {
         if (isEnd) {
             doc.off('keydown', moveKey);
@@ -115,33 +115,15 @@ $(document).ready(function() {
     }
     // simply ends any motion that checked activeMotion
     function stopKey(e) {
-        if (e.which === 37) {
-            activeMotion[0].left = false;
-        }
-        if (e.which === 39) {
-            activeMotion[0].right = false;
-        }
-        if (e.which === 38) {
-            activeMotion[0].up = false;
-        }
-        if (e.which === 40) {
-            activeMotion[0].down = false;
-        }
-        if (e.which === 65) {
-            activeMotion[1].left = false;
-        }
-        if (e.which === 68) {
-            activeMotion[1].right = false;
-        }
-        if (e.which === 87) {
-            activeMotion[1].up = false;
-        }
-        if (e.which === 83) {
-            activeMotion[1].down = false;
-        }
-        if (e.which === 77) {
-            teleport = false;
-        }
+        if (e.which === 37) {activeMotion[0].left = false;}
+        if (e.which === 39) {activeMotion[0].right = false;}
+        if (e.which === 38) {activeMotion[0].up = false;}
+        if (e.which === 40) {activeMotion[0].down = false;}
+        if (e.which === 65) {activeMotion[1].left = false;}
+        if (e.which === 68) {activeMotion[1].right = false;}
+        if (e.which === 87) {activeMotion[1].up = false;}
+        if (e.which === 83) {activeMotion[1].down = false;}
+        if (e.which === 77) {teleport = false;}
     }
     var goLeft = function(carIn) {
         if (parseInt(carIn.css('left')) >= -5 && !isEnd)
@@ -284,7 +266,6 @@ $(document).ready(function() {
     var snitch = $('.snitch');
 
     //our main animation "loop"
-
     var moveSnitch = function() {
         if (!isEnd) {
             var top = (Math.random() * height);
