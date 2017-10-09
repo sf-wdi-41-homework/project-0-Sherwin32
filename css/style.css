@@ -1,5 +1,20 @@
+body {
+
+background-image: url('../img/body-background.jpg');
+background-size: cover;
+}
+
+h1 {
+	font-size: 50px;
+	font-family: 'Ribeye Marrow', cursive;
+}
+
+h2 {
+	font-family: 'Ribeye Marrow', cursive;
+}
+
 #header {
-	margin: 20px 0 20px 0;
+	margin: 10px 0 10px 0;
 }
 
 
@@ -23,7 +38,7 @@
 	background-size: cover;
 	position: absolute;
 	top: 350px;
-	left: 50px;
+	left: 820px;
 }
 
 #car-two {
@@ -33,21 +48,9 @@
 	background-image: url('../img/car-red.png');
 	background-size: cover;
 	position: absolute;
-	top: 200px;
+	top: 350px;
 	left: 50px;
 }
-
-/*.wall{
-	background-color: brown;
-	position: absolute;
-}
-
-#w1{
-	height:400px;
-	width:5px;
-	top: 0px;
-	left: 100px;
-}*/
 
 .snitch {
     border-radius:25px;
@@ -55,5 +58,9 @@
     height:40px;
     background:#FF0;
     position:absolute;
-    opacity:0.8;
+    opacity:0.6;
+}
+
+#footer {
+	margin: 15px 0 10px 0;
 }

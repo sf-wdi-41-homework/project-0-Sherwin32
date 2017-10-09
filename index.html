@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-	<title>Car Race!!!!!</title>
+    <title>Car Race!!!!!</title>
     <!-- set viewport to device width to allow responsiveness -->
     <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+    <!-- font from google -->
+    <link href="https://fonts.googleapis.com/css?family=Ribeye+Marrow" rel="stylesheet">
 
     <!-- Bootstrap CDN -->
     <link rel="stylesheet" href="css/normalize.css">
@@ -16,44 +19,53 @@
     <script src="js/jquery-3.2.1.min.js"></script>
     <script src="js/app.js"></script>
 </head>
+
 <body>
-<!-- header -->
-	<div id="header" class="container-fluid">
-		<div class="row">
-			<div class="col-sm-4">
-				<h2 class="text-center">Car One:<span id="score-one">0.00</span>%</h2>
-			</div>
-			<div class="col-sm-4">
-				<h1 class="text-center">Car Racing</h1>
-			</div>
-			<div class="col-sm-4">
-				<h2 class="text-center">Car Two:<span id="score-two">0.00</span>%</h2>
-			</div>
-		</div>
-	</div>
-<!-- game -->
-	<div id="game-wrapper" class="container-fluid">
-		<div class="row">
-			<div id="playground">
-				<!-- <div id="w1" class="wall"></div>	 -->
-				<div class="snitch"></div>
-				<div id="car-one"></div>
-				<div id="car-two"></div>
-				
-			</div>
-		</div>
-	</div>
-	<div id="footer" class="container-fluid">
-		<div class="row">
-		<div class="col-sm-4">
-		<!-- <iframe width="140" height="60" src="https://www.youtube.com/embed/mD4GbGmvNRc" frameborder="0" allowfullscreen></iframe> -->
-		</div>
-		<div class="col-sm-4 text-center">
-			123
-		</div>
-		</div>
-	</dir>
+    <!-- header -->
+    <div id="header" class="container-fluid animated">
+        <div class="row">
+            <div class="col-sm-4">
+                <h2 class="text-center">Car Two:<span id="score-two">0.00</span>%</h2>
+            </div>
+            <div class="col-sm-4">
+                <h1 id="status-display" class="text-center animated">Car Racing</h1>
+            </div>
+            <div class="col-sm-4">
+                <h2 class="text-center">Car One:<span id="score-one">0.00</span>%</h2>
+            </div>
+        </div>
+    </div>
+    <!-- game -->
+    <div id="game-wrapper" class="container-fluid">
+        <div class="row">
+            <div id="playground">
+                <!-- <div id="w1" class="wall"></div>	 -->
+                <div class="snitch"></div>
+                <div id="car-one"></div>
+                <div id="car-two"></div>
+
+            </div>
+        </div>
+    </div>
+    <!-- footer -->
+    <div id="footer" class="container-fluid">
+        <div class="row">
+            <div class="col-sm-4">
+                <iframe width="140" height="60" src="https://www.youtube.com/embed/mD4GbGmvNRc?autoplay=1" frameborder="0" allowfullscreen></iframe>
+            </div>
+            <div class="col-sm-4 text-center">
+                <button id="restartBtn" class="btn-success">NEW GAME</button>
+            </div>
+            <div class="col-sm-4 text-center">
+                <p>Fit your car in the power zone to collect energy for your base!</p>
+                <p>Control keys:</p>
+                <p>Player One: ↑ ↓ ← →</p>
+                <p>Player Two: w s a d</p>
+            </div>
+        </div>
+        </dir>
 
 
 </body>
+
 </html>
