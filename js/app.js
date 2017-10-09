@@ -19,11 +19,17 @@ $(document).ready(function() {
         down: false
     }];
     var teleport = false;
+    var isEnd = false;
 
     doc.on('keyup',stopKey);
     
     doc.on('keydown',moveKey);
     doc.on('keydown',teleportKey);
+
+    function listenerSwitch(){
+        doc.off('keydown', moveKey);
+    }
+
 
     function teleportKey(e){
         if(e.which===77){ //m
@@ -113,19 +119,19 @@ $(document).ready(function() {
         }
     }
     goLeft = function(carIn){
-        if(parseInt(carIn.css('left'))>=-5)
+        if(parseInt(carIn.css('left'))>=-5 && !isEnd)
         go("left", carIn);
     }
     goRight = function(carIn){
-        if(parseInt(carIn.css('left'))<=playgroundWidth-20)
+        if(parseInt(carIn.css('left'))<=playgroundWidth-20 && !isEnd)
         go("right", carIn);
     }
     goUp = function(carIn){
-        if(parseInt(carIn.css('top'))>=0)
+        if(parseInt(carIn.css('top'))>=0 && !isEnd)
         go("up", carIn);
     }
     goDown = function(carIn){
-        if(parseInt(carIn.css('top'))<=playgroundHeight-30)
+        if(parseInt(carIn.css('top'))<=playgroundHeight-30 && !isEnd)
         go("down", carIn);
     }
     turnCar = function(motion, carIn){
@@ -148,18 +154,32 @@ $(document).ready(function() {
         }
     }
     checkTouch = function(carIn){
-        var checkTop = (parseInt(carIn.offset().top) >= parseInt($('.chute').offset().top));
-        var checkBottom = (parseInt(carIn.offset().top+30)) <= parseInt($('.chute').offset().top+50)
-        var checkLeft = (parseInt(carIn.offset().left) >= parseInt($('.chute').offset().left));
-        var checkRight = (parseInt(carIn.offset().left+30)) <= parseInt($('.chute').offset().left+50)
+        var checkTop = (parseInt(carIn.offset().top) >= parseInt($('.snitch').offset().top));
+        var checkBottom = (parseInt(carIn.offset().top+30)) <= parseInt($('.snitch').offset().top+50)
+        var checkLeft = (parseInt(carIn.offset().left) >= parseInt($('.snitch').offset().left));
+        var checkRight = (parseInt(carIn.offset().left+30)) <= parseInt($('.snitch').offset().left+50)
         if(checkBottom && checkTop && checkLeft && checkRight){
             if(carIn===carOne){
+
                 $('#score-one').text((parseInt($('#score-one').text())+1));
             }else if(carIn===carTwo){
                 $('#score-two').text((parseInt($('#score-two').text())+1));
             }
             // console.log("KKKKKKKKKKK")
         }
+        if(parseInt($('#score-one').text())>=100 && !isEnd){
+            $('#score-one').text(100);
+            endGame(carOne);
+        }
+        if(parseInt($('#score-two').text())>=100 && !isEnd){
+            $('#score-two').text(100);
+            endGame(carTwo);
+        }
+    }
+    endGame = function(carIn){
+        isEnd = true;
+        listenerSwitch();
+        alert("carIn");
     }
     go = function(direction, carIn){//left, right up down
         // console.log($('#car-one').offset())
@@ -168,10 +188,6 @@ $(document).ready(function() {
         // console.log(2, carIn.offset().left+30)
         // console.log(chute.offset())
         checkTouch(carIn);
-        if(carIn.offset().left+20 === $('#w1').offset().left){
-            console.log("sss")
-
-        }
 
         var motionSelector;
         if(carIn===carOne){
@@ -199,62 +215,45 @@ $(document).ready(function() {
         if(direction==="left" && motionSelector[direction]){
             setTimeout(function() {
                 goLeft(carIn);
-            }, 3);
+            }, 2);
             // setTimeout(go("left"),10);
         }
         if(direction==="right" && motionSelector[direction]){
             setTimeout(function() {
                 goRight(carIn);
-            }, 3);
+            }, 2);
         }
         if(direction==="up" && motionSelector[direction]){
             setTimeout(function() {
                 goUp(carIn);
-            }, 3);
+            }, 2);
         }
         if(direction==="down" && motionSelector[direction]){
             setTimeout(function() {
                 goDown(carIn);
-            }, 3);
+            }, 2);
         }
     }
     //cache a few static values
 var box = $('#playground');
 var width = box.width();
 var height = box.height();
-var chute = $('.chute');
+var snitch = $('.snitch');
 
 //our main animation "loop"
 
-foo = function(){
+moveSnitch = function(){
+    if(!isEnd){
     var top = (Math.random() * height);
     var left = (Math.random() * width);
     var time = Math.random() * 3000;
-    chute.animate({
+    snitch.animate({
         left: left,
         top: top
-    }, time, foo);
+    }, time, moveSnitch);}
 }
 
-foo();
+moveSnitch();
 
-// chute.each(function foo() {
-
-//     // console.log(chute.offset())
-
-//     //generate random values
-//     var top = (Math.random() * height) | 0;
-//     var left = (Math.random() * width) | 0;
-//     var time = Math.random() * 3000 | 0;
-
-//     //animate
-//     //we introduce a random value so that they aren't moving together
-//     //after the animation, we call foo for the current element
-//     //to animate the current element again
-//     $(this).animate({
-//         left: left,
-//         top: top
-//     }, time, foo);
-// });
 });
 

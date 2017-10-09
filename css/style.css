@@ -37,7 +37,7 @@
 	left: 50px;
 }
 
-.wall{
+/*.wall{
 	background-color: brown;
 	position: absolute;
 }
@@ -47,9 +47,9 @@
 	width:5px;
 	top: 0px;
 	left: 100px;
-}
+}*/
 
-.chute {
+.snitch {
     border-radius:25px;
     width:40px;
     height:40px;
